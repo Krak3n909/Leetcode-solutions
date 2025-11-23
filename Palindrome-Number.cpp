@@ -5,14 +5,13 @@ public:
         {
             return false;
         }
-        long long c=0;
-        long long j=x;
-        while(x!=0)
+        long long y=0,n=x;
+        while(n>0)
         {
-            c=c*10+x%10;
-            x/=10;
+            y*=10;
+            y+=(n%10);
+            n/=10;
         }
-        cout<<c<<endl;
-        return c==j;
+        return x==y;
     }
 };
