@@ -12,22 +12,27 @@
 12class Solution {
 13public:
 14
-15    void tr(vector<int> &k, TreeNode* r)
+15    void tr(vector<int> &k, TreeNode* r,int l,int& res)
 16    {
-17        if(!r)
+17        if(!r || k.size()>=l)
 18        {
 19            return;
 20        }
 21
-22        k.push_back(r->val);
-23        tr(k,r->left);
-24        tr(k,r->right);
-25    }
-26
-27    int kthSmallest(TreeNode* root, int l) {
-28        vector<int> k;
-29        tr(k,root);
-30        sort(k.begin(),k.end());
-31        return k[l-1];
-32    }
-33};
+22        tr(k,r->left,l,res);
+23        k.push_back(r->val);
+24        if(k.size()==l)
+25        {
+26            res=r->val;
+27            return;
+28        }
+29        tr(k,r->right,l,res);
+30    }
+31
+32    int kthSmallest(TreeNode* root, int l) {
+33        vector<int> k;
+34        int res=-1;
+35        tr(k,root,l,res);
+36        return res;
+37    }
+38};
