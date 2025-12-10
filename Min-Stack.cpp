@@ -1,50 +1,42 @@
 1class MinStack {
 2public:
 3
-4    stack<int> k;
-5    vector<int> kk;
+4    stack<int> s,m;
+5
 6    MinStack() {
 7        
 8    }
 9    
 10    void push(int val) {
-11        k.push(val);
-12        kk.push_back(val);
-13        sort(kk.begin(),kk.end());
-14    }
-15    
-16    void pop() {
-17        k.pop();
-18        stack<int> k2;
-19        kk.clear();
-20        while(!k.empty())
-21        {
-22            kk.push_back(k.top());
-23            k2.push(k.top());
-24            k.pop();
-25        }
-26        sort(kk.begin(),kk.end());
-27        while(!k2.empty())
-28        {
-29            k.push(k2.top());
-30            k2.pop();
-31        }
+11        s.push(val);
+12        if(m.empty() || m.top()>=val)
+13        {
+14            m.push(val);
+15        }
+16    }
+17    
+18    void pop() {
+19        if(m.top() == s.top())
+20        {
+21            m.pop();
+22        }
+23        s.pop();
+24    }
+25    
+26    int top() {
+27        return s.top();
+28    }
+29    
+30    int getMin() {
+31        return m.top();
 32    }
-33    
-34    int top() {
-35        return k.top();
-36    }
-37    
-38    int getMin() {
-39        return kk[0];
-40    }
-41};
-42
-43/**
-44 * Your MinStack object will be instantiated and called as such:
-45 * MinStack* obj = new MinStack();
-46 * obj->push(val);
-47 * obj->pop();
-48 * int param_3 = obj->top();
-49 * int param_4 = obj->getMin();
-50 */
+33};
+34
+35/**
+36 * Your MinStack object will be instantiated and called as such:
+37 * MinStack* obj = new MinStack();
+38 * obj->push(val);
+39 * obj->pop();
+40 * int param_3 = obj->top();
+41 * int param_4 = obj->getMin();
+42 */
