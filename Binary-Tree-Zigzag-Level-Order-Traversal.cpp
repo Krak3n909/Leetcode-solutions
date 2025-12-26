@@ -23,25 +23,29 @@
 23        int t = 1;
 24        while (!trav.empty()) {
 25            int s = trav.size();
-26            vector<int> tmp;
-27            while (s--) {
+26            vector<int> tmp(s);
+27            for(int i=0; i<s;i++) {
 28                TreeNode* tr = trav.front();
 29                trav.pop();
 30                if (tr) {
-31                    tmp.push_back(tr->val);
-32                    if (tr->left)
-33                        trav.push(tr->left);
-34                    if (tr->right)
-35                        trav.push(tr->right);
-36                }
-37            }
-38            if (t == -1) {
-39                reverse(tmp.begin(), tmp.end());
-40            }
-41            res.push_back(tmp);
-42            t *= -1;
-43        }
-44
-45        return res;
-46    }
-47};
+31                    if(t==1)
+32                    {
+33                        tmp[i] = tr->val;
+34                    }
+35                    else
+36                    {
+37                        tmp[s - i - 1] = tr->val;
+38                    }
+39                    if (tr->left)
+40                        trav.push(tr->left);
+41                    if (tr->right)
+42                        trav.push(tr->right);
+43                }
+44            }
+45            res.push_back(tmp);
+46            t *= -1;
+47        }
+48
+49        return res;
+50    }
+51};
