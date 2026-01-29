@@ -9,48 +9,45 @@
 9        while(startRow <= endRow)
 10        {
 11            targetRow = (startRow + endRow)/2;
-12            cout<<targetRow<<endl;
-13            if(matrix[targetRow][0] <= target && matrix[targetRow][col-1] >= target)
-14            {
-15                break;
-16            }
-17            else if(matrix[targetRow][col-1] < target)
-18            {
-19                if(targetRow == row - 1)
-20                {
-21                    return false;
-22                }
-23                startRow = targetRow + 1;
-24            }
-25            else if(matrix[targetRow][0] > target)
-26            {
-27                if(targetRow == 0)
-28                {
-29                    return false;
-30                }
-31                endRow = targetRow - 1;
-32            }
-33        }
-34        int l = 0;
-35        int r = col - 1;
-36        while(l <= r)
-37        {
-38            int mid = (l + r) / 2;
-39            
-40            cout<<0<<mid<<endl;
-41            if(matrix[targetRow][mid] == target)
-42            {
-43                return true;
-44            }
-45            else if( matrix[targetRow][mid] > target )
-46            {
-47                r = mid - 1;
-48            }
-49            else 
-50            {
-51                l = mid + 1; 
-52            }
-53        }
-54        return false;
-55    }
-56};
+12            if(matrix[targetRow][0] <= target && matrix[targetRow][col-1] >= target)
+13            {
+14                break;
+15            }
+16            else if(matrix[targetRow][col-1] < target)
+17            {
+18                if(targetRow == row - 1)
+19                {
+20                    return false;
+21                }
+22                startRow = targetRow + 1;
+23            }
+24            else if(matrix[targetRow][0] > target)
+25            {
+26                if(targetRow == 0)
+27                {
+28                    return false;
+29                }
+30                endRow = targetRow - 1;
+31            }
+32        }
+33        int l = 0;
+34        int r = col - 1;
+35        while(l <= r)
+36        {
+37            int mid = (l + r) / 2;
+38            if(matrix[targetRow][mid] == target)
+39            {
+40                return true;
+41            }
+42            else if( matrix[targetRow][mid] > target )
+43            {
+44                r = mid - 1;
+45            }
+46            else 
+47            {
+48                l = mid + 1; 
+49            }
+50        }
+51        return false;
+52    }
+53};
