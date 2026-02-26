@@ -18,30 +18,31 @@
 18        {
 19            return;
 20        }
-21        tr(r -> left, a);
-22        if(! r-> left && ! r-> right)
-23        {
-24            a.push_back(r->val);
+21        if(! r-> left && ! r-> right)
+22        {
+23            a.push_back(r->val);
+24            return;
 25        }
-26        tr(r -> right, a);
-27    }
-28
-29    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-30        vector<int> a;
-31        vector<int> b;
-32        tr(root1, a);
-33        tr(root2, b);
-34        if(a.size() != b.size())
-35        {
-36            return false;
-37        }
-38        for(int i = 0;i < a.size();i++)
-39        {
-40            if(a[i] != b[i])
-41            {
-42                return false;
-43            }
-44        }
-45        return true;
-46    }
-47};
+26        tr(r -> left, a);
+27        tr(r -> right, a);
+28    }
+29
+30    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+31        vector<int> a;
+32        vector<int> b;
+33        tr(root1, a);
+34        tr(root2, b);
+35        if(a.size() != b.size())
+36        {
+37            return false;
+38        }
+39        for(int i = 0;i < a.size();i++)
+40        {
+41            if(a[i] != b[i])
+42            {
+43                return false;
+44            }
+45        }
+46        return true;
+47    }
+48};
