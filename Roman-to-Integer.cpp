@@ -81,8 +81,7 @@
 81            {
 82                cout<<"WTF\n"<<endl;
 83            }
-84            cout<<res<<endl;
-85        }
-86            return res;
-87    }
-88};
+84        }
+85            return res;
+86    }
+87};
