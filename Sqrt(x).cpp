@@ -1,25 +1,24 @@
 1class Solution {
 2public:
 3    int mySqrt(int x) {
-4        long long l = 1, r = x, ans = 0;
+4        long long l = 0, r = x, ans = 0;
 5        while(l <= r)
 6        {
-7           long long mid = (l + r) / 2;
-8           
-9           if((mid * mid) == x)
-10           {
-11            return mid;
-12           }  
-13           else if((mid * mid) > x)
-14           {
-15            r = mid - 1;
-16           } 
-17           else
-18           {
-19            ans = mid;
-20            l = mid + 1;
-21           }
-22        }
-23        return ans;
-24    }
-25};
+7            long long mid = (l + r) / 2;
+8            if(mid * mid == x)
+9            {
+10                return mid;
+11            }
+12            else if(mid * mid > x)
+13            {
+14                r = mid - 1;
+15            }
+16            else
+17            {
+18                ans = mid;
+19                l = mid + 1;
+20            }
+21        }
+22        return ans;
+23    }
+24};
