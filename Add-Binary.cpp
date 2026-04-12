@@ -1,94 +1,95 @@
 1class Solution {
 2public:
 3    string addBinary(string a, string b) {
-4        string res = "";
-5        int n = a.size() - 1;
-6        int m = b.size() - 1;
-7        int i = n;
-8        int j = m;
-9        int c = 0;
-10        while(i >= 0 && j >= 0)
-11        {
-12            int f = a[i--] - '0';
-13            int s = b[j--] - '0';
-14            int tmp = f + s + c;
-15            if(tmp == 0)
-16            {
-17                c = 0;
-18                res += "0";
-19            }
-20            else if(tmp == 1)
-21            {
-22                c = 0;
-23                res += "1";
-24            }
-25            else if(tmp == 2)
-26            {
-27                res += "0";
-28                c = 1;
-29            }
-30            else if(tmp == 3)
-31            {
-32                res += "1";
-33                c = 1;
-34            }
-35        }
-36        while(i >= 0)
-37        {
-38            int f = a[i--] - '0';
-39            int tmp = f + c;
-40            if(tmp == 0)
-41            {
-42                c = 0;
-43                res += "0";
-44            }
-45            else if(tmp == 1)
-46            {
-47                c = 0;
-48                res += "1";
-49            }
-50            else if(tmp == 2)
-51            {
-52                res += "0";
-53                c = 1;
-54            }
-55            else if(tmp == 3)
-56            {
-57                res += "1";
-58                c = 1;
-59            }
+4        int i = a.size() - 1, j = b.size() - 1;
+5        int c = 0;
+6        string res = "";
+7        while(i >= 0 && j>=0)
+8        {
+9            int tmp = c;
+10            tmp += a[i] - '0';
+11            tmp += b[j] - '0';
+12            if(tmp == 3)
+13            {
+14                res.push_back('1');
+15                c = 1;
+16            }
+17            else if(tmp == 2)
+18            {
+19                res.push_back('0');
+20                c = 1;
+21            }
+22            else if(tmp == 1)
+23            {
+24                res.push_back('1');
+25                c = 0;
+26            }
+27            else
+28            {
+29                res.push_back('0');
+30                c = 0;
+31            }
+32            i--;
+33            j--;
+34        }
+35        while(i >= 0 )
+36        {
+37            int tmp = c;
+38            tmp += a[i] - '0';
+39            if(tmp == 3)
+40            {
+41                res.push_back('1');
+42                c = 1;
+43            }
+44            else if(tmp == 2)
+45            {
+46                res.push_back('0');
+47                c = 1;
+48            }
+49            else if(tmp == 1)
+50            {
+51                res.push_back('1');
+52                c = 0;
+53            }
+54            else
+55            {
+56                res.push_back('0');
+57                c = 0;
+58            }
+59            i--;
 60        }
-61        
-62        while(j >= 0)
-63        {
-64            int s = b[j--] - '0';
-65            int tmp = s + c;
-66            if(tmp == 0)
-67            {
-68                c = 0;
-69                res += "0";
-70            }
-71            else if(tmp == 1)
-72            {
-73                c = 0;
-74                res += "1";
-75            }
-76            else if(tmp == 2)
-77            {
-78                res += "0";
-79                c = 1;
-80            }
-81            else if(tmp == 3)
-82            {
-83                res += "1";
-84                c = 1;
-85            }
+61        while(j >= 0 )
+62        {
+63            int tmp = c;
+64            tmp += b[j] - '0';
+65            if(tmp == 3)
+66            {
+67                res.push_back('1');
+68                c = 1;
+69            }
+70            else if(tmp == 2)
+71            {
+72                res.push_back('0');
+73                c = 1;
+74            }
+75            else if(tmp == 1)
+76            {
+77                res.push_back('1');
+78                c = 0;
+79            }
+80            else
+81            {
+82                res.push_back('0');
+83                c = 0;
+84            }
+85            j--;
 86        }
-87        if(c)
+87        if(c == 1)
 88        {
-89            res += "1";
+89            res.push_back('1');
 90        }
 91        reverse(res.begin(), res.end());
 92        return res;
-93    }
-94};
+93
+94    }
+95};
