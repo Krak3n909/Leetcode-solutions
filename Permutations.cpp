@@ -1,32 +1,24 @@
 1class Solution {
 2public:
 3
-4    void swap(int& a, int& b) {
-5        int temp = a;
-6        a = b;
-7        b = temp;
-8    }    
-9
-10    void bt(vector<vector<int>>& k, int idx,vector<int>& nums)
-11    {
-12        if(idx == nums.size())
-13        {
-14            k.push_back(nums);
-15            return;
+4    void trav(vector<vector<int>> &ans, vector<int>& nums, int idx)
+5    {
+6        if(idx == nums.size())
+7        {
+8            ans.push_back(nums);
+9            return;
+10        }
+11        for(int i = idx;i < nums.size();i++)
+12        {
+13            swap(nums[i], nums[idx]);
+14            trav(ans, nums, idx + 1);
+15            swap(nums[i], nums[idx]);
 16        }
-17        for(int i=idx;i<nums.size();i++)
-18        {
-19            swap(nums[i], nums[idx]);
-20            bt(k, idx+1, nums);
-21            swap(nums[i], nums[idx]);
-22        }
+17    }
+18
+19    vector<vector<int>> permute(vector<int>& nums) {
+20        vector<vector<int>> ans;
+21        trav(ans, nums, 0);
+22        return ans;
 23    }
-24
-25
-26
-27    vector<vector<int>> permute(vector<int>& nums) {
-28        vector<vector<int>> k;
-29        bt(k, 0, nums);
-30        return k;
-31    }
-32};
+24};
