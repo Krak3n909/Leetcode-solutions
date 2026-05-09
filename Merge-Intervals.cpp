@@ -1,24 +1,24 @@
 1class Solution {
 2public:
-3    vector<vector<int>> merge(vector<vector<int>>& i) {
-4        sort(i.begin(),i.end());
-5        vector<vector<int>> k;
-6        int fp=i[0][0];
-7        int lp=i[0][1];
-8        for(int j=0;j<i.size();j++)
+3    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+4        vector<vector<int>> ans;
+5        sort(intervals.begin(), intervals.end());
+6        int fp = intervals[0][0];
+7        int lp = intervals[0][1];
+8        for(int i = 0;i < intervals.size();i++)
 9        {
-10            if(i[j][0]<=lp)
+10            if(lp >= intervals[i][0])
 11            {
-12                lp=max(i[j][1],lp);
+12                lp = max(intervals[i][1], lp);
 13            }
 14            else
 15            {
-16                k.push_back({fp,lp});
-17                fp=i[j][0];
-18                lp=i[j][1];
+16                ans.push_back({fp, lp});
+17                fp = intervals[i][0];
+18                lp = intervals[i][1];
 19            }
 20        }
-21        k.push_back({fp,lp});
-22        return k;
+21            ans.push_back({fp, lp});
+22        return ans;
 23    }
 24};
